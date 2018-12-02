@@ -3,6 +3,7 @@
 if [ -z $1 ] ;then
     echo "Usage:"
     echo "    $0 gcc|clang"
+    exit 0
 else
     compiler=$1
 fi
@@ -19,12 +20,13 @@ fi
 echo Using toolchain: $toolchain
 
 cwd=$PWD
-mkdir -p build_linux_arm64
-pushd build_linux_arm64
+build_dir=build_linux_arm64
+mkdir -p $build_dir
+pushd $build_dir
 
 cmake -DCMAKE_TOOLCHAIN_FILE=$cwd/$toolchain \
       -DCMAKE_POSITION_INDEPENDENT_CODE=1                     \
-      -DCMAKE_INSTALL_PREFIX=$cwd/__install                   \
+      -DCMAKE_INSTALL_PREFIX=$cwd/$build_dir/__install                   \
       ../src
 
 popd
