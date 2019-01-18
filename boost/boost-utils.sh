@@ -55,7 +55,7 @@ unknownParameter()
 doneSection()
 {
     echo
-    echo "Done"
+    echo "Done ${1}"
     echo "================================================================="
     echo
 }
